@@ -1,5 +1,6 @@
     <?php
 return array(
+    'coupon'                    => 'Bons de réduction',
     'select_payment_type'                                        => 'Sélectionnez la passerelle de paiement',
     'make_appointment'                                           => 'Prendre un rendez-vous',
     'enquiry'                                                    => 'Demandes',
@@ -185,8 +186,24 @@ return array(
                 'language' => 'Langue',
                 'edit_translation' => 'Editar tradução',
             ),
+
+    'coupons' =>
+        array(
+            'code'       => 'Code',
+            'percentage' => 'Pourcentage',
+            'use_count'  => 'Utiliser le compte',
+            'coupon_name' => 'Entrez le nom du coupon',
+            'coupon_code' => 'Entrer le code de réduction',
+            'coupon_percentage' => 'Entrez le pourcentage',
+            'coupon_use_count' => "Entrez le nombre total d'utilisations",
+            'coupon_create'     => 'Coupon créé avec succès.',
+            'coupon_update'     => 'Coupon mis à jour avec succès.',
+            'coupon_status'     => 'Statut du coupon mis à jour avec succès.'
+        ),
     'common' =>
             array(
+                'new_coupon'              => 'Nouveau coupon',
+                'edit_coupon'              => 'Modifier le coupon',
                 'custom'                  => 'Personnalisé',
                 'from'                    => 'De',
                 'to'                      => 'À',

@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmailSubscriptionController;
@@ -86,6 +87,7 @@ Route::group(['middleware' => ['auth', 'valid.user', 'xss']], function () {
 
     Route::group(['prefix' => 'admin', 'middleware' => ['role:admin', 'multi_tenant']], function () {
 
+        Route::post('/coupons/coupon-check',[CouponController::class,'couponCheck'])->name('coupon.couponCheck');
         //dashboard chart
         Route::get('/dashboard-chart', [VcardController::class, 'dashboardChartData'])->name('dashboard.vcard.chart');
 
@@ -234,6 +236,16 @@ Route::group(['middleware' => ['auth', 'valid.user', 'xss']], function () {
         Route::get('/plans/status/{plan}', [PlanController::class, 'updateStatus'])->name('plan.status');
         Route::post('subscription-plans/{user}/make-plan-as-default',
             [PlanController::class, 'makePlanDefault'])->name('make.plan.default');
+        
+        //coupon
+        Route::get('/coupons', [CouponController::class, 'index'])->name('coupon.index');
+        Route::get('/coupons/create',[CouponController::class,'create'])->name('coupon.create');
+        Route::post('/coupons/store',[CouponController::class,'store'])->name('coupon.store');
+        Route::get('/coupons/{coupon}',[CouponController::class,'edit'])->name('coupon.edit');
+        Route::put('/coupons/{coupon}',[CouponController::class,'update'])->name('coupon.update');
+        Route::get('/coupons/status/{coupon}',[CouponController::class,'updateStatus'])->name('coupon.updateStatus');
+        Route::delete('/coupons/{coupon}', [CouponController::class, 'destroy'])->name('coupon.destroy');
+        
         //currency
         Route::get('/currencies', [CurrencyController::class, 'index'])->name('currencies.index');
         // Role route

@@ -83,6 +83,7 @@ mix.js([
     'resources/assets/js/subscription/subscription.js',
     'resources/assets/js/subscription/upgrade.js',
     'resources/assets/js/sadmin/plans/plans.js',
+    'resources/assets/js/sadmin/coupons/coupons.js',
     'resources/assets/js/sadmin/plans/create-edit.js',
     'resources/assets/js/enquiry/enquiry.js',
     'resources/assets/js/appointment/appointment.js',

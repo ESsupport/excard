@@ -1,4 +1,5 @@
 <?php return array (
+    'coupon'                    => 'İndirim kuponları',
     'save' => 'Save',
     'select_payment_type' => 'Ödeme Ağ Geçidini Seçin',
     'make_appointment' => 'Randevu ayarlamak',
@@ -184,8 +185,24 @@
     'language' => 'Dilim',
     'edit_translation' => 'Çeviriyi Düzenle',
   ),
+
+    'coupons' =>
+        array(
+            'code'       => 'kod',
+            'percentage' => 'Yüzde',
+            'use_count'  => 'Sayıyı Kullan',
+            'coupon_name' => 'Kupon Adını Girin',
+            'coupon_code' => 'Kupon kodunu girin',
+            'coupon_percentage' => 'Yüzde Girin',
+            'coupon_use_count' => 'Toplam Kullanım Sayısını Girin',
+            'coupon_create'     => 'Kupon Başarıyla Oluşturuldu.',
+            'coupon_update'     => 'Kupon Başarıyla Güncellendi.',
+            'coupon_status'     => 'Kupon Durumu Başarıyla Güncellendi.'
+        ),
     'common' => 
   array (
+      'new_coupon'              => 'Yeni Kupon',
+      'edit_coupon'              => 'Kuponu Düzenle',
       'custom'                  => 'Gelenek',
       'from'                    => 'İtibaren',
       'to'                      => 'İle',

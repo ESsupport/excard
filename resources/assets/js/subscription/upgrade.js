@@ -227,3 +227,20 @@ listenClick('.freePayment', function () {
         return true;
     }
 });
+
+listenClick('#discount_coupon_check', function (){
+    let code = $('#discount_code').val();
+    let pay_amount = $('#payable_amount').val();
+    $.ajax({
+        url: route('coupon.couponCheck'),
+        method: 'post',
+        data: { code : code, pay_amount: pay_amount},
+        cache: false,
+        success: function (result) {
+            if (result.success) {
+                displaySuccessMessage(result.message)
+                $('.total_amount').text(`$ ${result.data}`)
+            }
+        },
+    });
+});

@@ -130,7 +130,7 @@
                                             </div>
                                             <div class="d-flex align-items-center  py-2">
                                                 <h4 class="fs-5 w-50 plan-data mb-0 me-5 fw-bolder">{{__('messages.subscription.payable_amount')}}</h4>
-                                                <span class="fs-5 w-50 text-muted fw-bold mt-1">
+                                                <span class="fs-5 w-50 text-muted fw-bold mt-1 total_amount">
                                     {{ $subscriptionsPricingPlan->currency->currency_icon }}
                                                     {{($newPlan['amountToPay'])}}
                                     </span>
@@ -140,8 +140,20 @@
                             </div>
                         </div>
 
-                        <div class="row justify-content-center">
-                            <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center mt-5 plan-controls">
+                        <div class="row justify-content-center d-flex justify-content-between">
+                            <div class="col-6 mt-5 d-flex justify-content-between">
+                                <div class="row">
+                                    <label for="" class>Discount Coupon: </label>
+                                    <div class="col-10">
+                                        <input type="text" class="form-control" id="discount_code" placeholder="Enter Your Giftcard">
+                                        <input type="hidden" name="payable_amount" id="payable_amount" value="{{($newPlan['amountToPay'])}}">
+                                    </div>
+                                    <div class="col-2">
+                                        <button class="btn btn-outline-primary" id="discount_coupon_check">Apply</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-12 d-flex mt-5 plan-controls">
                                 <div class="mt-5 me-3 w-50 {{ $newPlan['amountToPay'] <= 0 ? 'd-none' : '' }}">
                                     {{ Form::select('payment_type', $paymentTypes ,null , ['class' => 'form-select','required', 'id' => 'paymentType', 'data-control' => 'select2', 'placeholder'=>__("messages.select_payment_type")]) }}
                                 </div>

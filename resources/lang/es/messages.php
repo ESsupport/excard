@@ -1,4 +1,5 @@
 <?php return array (
+    'coupon'                    => 'Cupones de descuento',
     'select_payment_type' => 'Seleccionar pasarela de pago',
     'make_appointment' => 'Concertar cita',
     'enquiry' => 'Consultas',
@@ -185,8 +186,25 @@
     'language' => 'idioma',
     'edit_translation' => 'Editar traducción',
   ),
+
+    'coupons' =>
+        array(
+            'code'       => 'Código',
+            'percentage' => 'Porcentaje',
+            'use_count'  => 'Conteo de uso',
+            'coupon_name' => 'Ingrese el nombre del cupón',
+            'coupon_code' => 'Introduce el código de cupón',
+            'coupon_percentage' => 'Introducir porcentaje',
+            'coupon_use_count' => 'Ingrese el recuento total de uso',
+            'coupon_create'     => 'Cupón creado con éxito.',
+            'coupon_update'     => 'Cupón actualizado con éxito.',
+            'coupon_status'     => 'Estado del cupón actualizado con éxito.'
+        ),
+    
     'common' => 
   array (
+      'new_coupon'              => 'New Coupon',
+      'edit_coupon'              => 'Edit Coupon',
       'custom'                  => 'Disfraz',
       'from'                    => 'De',
       'to'                      => 'A',
