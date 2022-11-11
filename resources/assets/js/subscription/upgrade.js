@@ -7,6 +7,8 @@ listenClick( '.makePayment', function () {
             : null,
         price: $(this).data('plan-price'),
         payment_type: $('#paymentType option:selected').val(),
+        coupon_applied: $('#coupon_applied').val(),
+        coupon_id: $('#coupon_id').val()
     };
     $(this).addClass('disabled');
     $('.makePayment').text('Please Wait...');
@@ -86,6 +88,9 @@ listenClick('.paymentByPaypal', function () {
             'planId': $(this).data('id'),
             'from_pricing': pricing,
             'payment_type': $('#paymentType option:selected').val(),
+            'amount_to_pay' : $(this).data('plan-price'),
+            'coupon_applied' : $('#coupon_applied').val(),
+            'coupon_id': $('#coupon_id').val()
         },
         success: function (result) {
             if (result.url) {
@@ -125,6 +130,9 @@ listenClick('.paymentByRazorPay', function () {
             'planId': $(this).data('id'),
             'from_pricing': pricing,
             'payment_type': $('#paymentType option:selected').val(),
+            'amount_to_pay' : $(this).data('plan-price'),
+            'coupon_applied' : $('#coupon_applied').val(),
+            'coupon_id': $('#coupon_id').val()
         },
         success: function (result) {
             if (result.success) {
@@ -239,8 +247,15 @@ listenClick('#discount_coupon_check', function (){
         success: function (result) {
             if (result.success) {
                 displaySuccessMessage(result.message)
-                $('.total_amount').text(`$ ${result.data}`)
+                $('.total_amount').text(`$ ${result.data.final_amount}`)
+                $('#payable_amount').val(result.data.final_amount);
+                $('.paymentBtn').attr('data-plan-price', result.data.final_amount);
+                $('#coupon_id').val(result.data.coupon_id);
+                $('#coupon_applied').val(true);
             }
         },
+        error: function error(result) {
+            displayErrorMessage(result.responseJSON.message);
+        }
     });
 });

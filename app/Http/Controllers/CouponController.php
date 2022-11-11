@@ -121,14 +121,19 @@ class CouponController extends AppBaseController
     public function couponCheck(Request $request){
         $input = $request->all();
       
-        $coupon = Coupon::where('code', $input['code'])->where('status', 1)->first();
+        $total_used = Coupon::where('code', $input['code'])->value('total_used');
+        $coupon = Coupon::where('code', $input['code'])->where('status', 1)->where('use_type', '>' , $total_used)->first();
         
         if(!empty($coupon)){
             $amount = $input['pay_amount'];     
             $discount_per = $coupon->percentage;
 
             $final_amount = $amount - ($amount * ($discount_per / 100));
-            return $this->sendResponse($final_amount, __('Coupon code Discount Applied'));
+            $data = [
+                'final_amount' => $final_amount,
+                'coupon_id'    => $coupon->id
+            ];
+            return $this->sendResponse($data, __('Coupon code Discount Applied'));
         }
 
         return $this->sendError(__('Invalid coupon Coupon code'));

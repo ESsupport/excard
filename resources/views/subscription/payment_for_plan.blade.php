@@ -134,6 +134,8 @@
                                     {{ $subscriptionsPricingPlan->currency->currency_icon }}
                                                     {{($newPlan['amountToPay'])}}
                                     </span>
+                                                <input type="hidden" id="coupon_applied" name="coupon_applied" value="false">
+                                                <input type="hidden" id="coupon_id" name="coupon_id">
                                             </div>
                                     </div>
                                 </div>
@@ -159,21 +161,21 @@
                                 </div>
                                 <div class="mt-5 stripePayment proceed-to-payment {{ $newPlan['amountToPay'] > 0 ? 'd-none' : '' }}">
                                     <button type="button"
-                                            class="btn btn-primary rounded-pill mx-auto d-block makePayment"
+                                            class="btn btn-primary rounded-pill mx-auto d-block makePayment paymentBtn"
                                             data-id="{{ $subscriptionsPricingPlan->id }}"
                                             data-plan-price="{{ $subscriptionsPricingPlan->price }}">
                                         {{ __('messages.subscription.pay_or_switch_plan') }}</button>
                                 </div>
                                 <div class="mt-5 paypalPayment proceed-to-payment d-none">
                                     <button type="button"
-                                            class="btn btn-primary rounded-pill mx-auto d-block paymentByPaypal"
+                                            class="btn btn-primary rounded-pill mx-auto d-block paymentByPaypal paymentBtn"
                                             data-id="{{ $subscriptionsPricingPlan->id }}"
                                             data-plan-price="{{ $subscriptionsPricingPlan->price }}">
                                         {{ __('messages.subscription.pay_or_switch_plan') }}</button>
                                 </div>
                                 <div class="mt-5 RazorPayPayment proceed-to-payment d-none">
                                     <button type="button"
-                                            class="btn btn-primary rounded-pill mx-auto d-block paymentByRazorPay"
+                                            class="btn btn-primary rounded-pill mx-auto d-block paymentByRazorPay paymentBtn"
                                             data-id="{{ $subscriptionsPricingPlan->id }}"
                                             data-plan-price="{{ $subscriptionsPricingPlan->price }}">
                                         {{ __('messages.subscription.pay_or_switch_plan') }}</button>

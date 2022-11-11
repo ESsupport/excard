@@ -81,13 +81,13 @@ class Plan extends Model
     const STRIPE = 1;
     const PAYPAL = 2;
     const RAZORPAY = 3;
-     const MANUALLY = 4;
+//     const MANUALLY = 4;
 
     const PAYMENT_METHOD = [
         self::STRIPE   => 'Stripe',
         self::PAYPAL   => 'Paypal',
         self::RAZORPAY => 'Razorpay',
-         self::MANUALLY => 'Manually',
+//         self::MANUALLY => 'Manually',
     ];
 
     /**

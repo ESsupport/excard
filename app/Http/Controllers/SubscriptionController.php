@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\AppointmentMail;
 use App\Mail\ManualPaymentGuideMail;
+use App\Models\Coupon;
 use App\Models\Plan;
 use App\Models\Setting;
 use App\Models\Subscription;
@@ -16,6 +17,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use Laracasts\Flash\Flash;
 use Stripe\Exception\ApiErrorException;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
@@ -188,8 +190,11 @@ class SubscriptionController extends AppBaseController
 
     public function purchaseSubscription(Request $request)
     {
+        $coupon_id     = $request->coupon_id;
+        $coupon_applied = $request->coupon_applied;
+        $discount_pay = $request->price;
         $subscriptionPlanId = $request->get('plan_id');
-        $result = $this->subscriptionRepo->purchaseSubscriptionForStripe($subscriptionPlanId);
+        $result = $this->subscriptionRepo->purchaseSubscriptionForStripe($subscriptionPlanId, $coupon_applied , $discount_pay, $coupon_id);
         // returning from here if the plan is free.
         if (isset($result['status']) && $result['status'] == true) {
             return $this->sendSuccess($result['subscriptionPlan']->name.' '.__('messages.subscription.has_been_subscribed'));
@@ -214,6 +219,13 @@ class SubscriptionController extends AppBaseController
         /** @var SubscriptionRepository $subscriptionRepo */
         $subscriptionRepo = app(SubscriptionRepository::class);
         $subscription = $subscriptionRepo->paymentUpdate($request);
+        if (Session::has('used_coupon_id')){
+            $coupon = Coupon::where('id', session('used_coupon_id'))->first();
+            $coupon->update([
+                'total_used' => $coupon->total_used + 1
+            ]);
+            session()->forget('used_coupon_id'); 
+        }
         Flash::success($subscription->plan->name.' '.__('messages.subscription.has_been_subscribed'));
 
         return view('sadmin.plans.payment.paymentSuccess');
@@ -228,6 +240,9 @@ class SubscriptionController extends AppBaseController
         /** @var SubscriptionRepository $subscriptionRepo */
         $subscriptionRepo = app(SubscriptionRepository::class);
         $subscriptionRepo->paymentFailed($subscriptionPlanId);
+        if (Session::has('used_coupon_id')){
+            session()->forget('used_coupon_id');
+        }
         Flash::error(__('messages.placeholder.unable_to_process_payment'));
 
         return view('sadmin.plans.payment.paymentcancel');

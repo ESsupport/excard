@@ -13,6 +13,7 @@ class Coupon extends Model
         'name',
         'code',
         'use_type',
+        'total_used',
         'percentage',
         'status'
     ];
