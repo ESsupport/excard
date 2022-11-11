@@ -20,6 +20,7 @@ class CreateCouponsTable extends Migration
             $table->integer('percentage');
             $table->boolean('status');
             $table->integer('use_type')->default(1);
+            $table->integer('total_used')->default(0);
             $table->timestamps();
         });
     }
