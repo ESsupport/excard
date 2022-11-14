@@ -65,17 +65,17 @@ class Subscription extends Model
     const TYPE_STRIPE = 1;
     const TYPE_PAYPAL = 2;
     const TYPE_RAZORPAY = 3;
-   
+
     const STRIPE = 1;
     const PAYPAL = 2;
     const RAZORPAY = 3;
-    // const MANUALLY = 4;
+     const MANUALLY = 4;
 
     const PAYMENT_GATEWAY = [
         self::STRIPE   => 'Stripe',
         self::PAYPAL => 'Paypal',
         self::RAZORPAY => 'Razorpay',
-        // self::MANUALLY => 'Manually',
+         self::MANUALLY => 'Manually',
     ];
 
     const PAYMENT_TYPES = [

@@ -72,22 +72,24 @@ class Plan extends Model
 
     const MONTHLY = 1;
     const YEARLY = 2;
+    const UNLIMITED = 3;
 
     const DURATION = [
         self::MONTHLY => 'Month',
         self::YEARLY  => 'Year',
+        self::UNLIMITED => 'Unlimited',
     ];
 
     const STRIPE = 1;
     const PAYPAL = 2;
     const RAZORPAY = 3;
-    // const MANUALLY = 4;
+     const MANUALLY = 4;
 
     const PAYMENT_METHOD = [
         self::STRIPE   => 'Stripe',
         self::PAYPAL   => 'Paypal',
         self::RAZORPAY => 'Razorpay',
-        // self::MANUALLY => 'Manually',
+         self::MANUALLY => 'Manually',
     ];
 
     /**
