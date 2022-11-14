@@ -19,12 +19,24 @@
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{--    @if (App::environment('production'))--}}
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex"/>
+    {{--    @endif--}}
+    <meta name="description" content="TheArtList.com is the leading online resource for visual artists and photographers looking for income and exhibition opportunities. Our online database lists thousands or featured art contests, photography calls, and opportunity announcements.">
+    <meta name="keywords" content="">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex"/>
+    <meta property="og:image" content="https://www.theartlist.com/submission/small/1666801065.png"/>
 
 </head>
 <body>
 <div class="container">
     <div class="main-content vcard w-100 mx-auto">
-       
+
         <div class="vcard__banner w-100 position-relative">
             <img src="{{asset('assets/img/vcard3/vcard3-banner.png')}}" alt="banner"/>
 
@@ -74,7 +86,7 @@
                 <div class="d-flex flex-column">
                     <span class="avatar-name fw-bold text-sm-start text-center">Alexa Nairobi</span>
                     <span class="avatar-designation text-sm-start text-center">Frontend Developer</span>
-          
+
                 </div>
                 <div class="vcard__social d-flex mt-3">
                     <span class="icons rounded-circle d-flex justify-content-center align-items-center my-2 me-2">
@@ -92,9 +104,9 @@
                 </div>
 
             </div>
-            
+
         </div>
-        
+
         <div class="d-flex align-items-center">
         <span class="pt-2 px-2 profile-description"> I am a heart surgeon. I have 10 year experience in surgery,I am a heart surgeon. I have 10 year experience in surgery,I am a heart surgeon. I have 10 year experience in surgery,I am a heart surgeon. I have 10 year experience in surgery,I am a heart surgeon. I have 10 year experience in surgery,I am a heart surgeon. I have 10 year experience in surgery</span>
         </div>
