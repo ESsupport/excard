@@ -19,14 +19,25 @@
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{--    @if (App::environment('production'))--}}
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex"/>
+    {{--    @endif--}}
+    <meta name="description" content="TheArtList.com is the leading online resource for visual artists and photographers looking for income and exhibition opportunities. Our online database lists thousands or featured art contests, photography calls, and opportunity announcements.">
+    <meta name="keywords" content="">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex"/>
+    <meta property="og:image" content="https://www.theartlist.com/submission/small/1666801065.png"/>
 </head>
 <body>
 
 <div class="container main-section">
     <div class="row d-flex justify-content-center">
         <div class="main-bg p-0">
-           
+
             <div class="position-relative">
                 <img src="{{asset('assets/img/vcard7/bannerimg.png')}}" class="banner-img"/>
 
@@ -105,8 +116,8 @@
                                     </div>
                                 </div>
                             </div>
-                           
-                            
+
+
                         </div>
                         <div class="row">
                             <div class="col-sm-6 mb-4">
@@ -284,7 +295,7 @@
                     </div>
                     <div class="row gallery-vcard d-flex justify-content-center g-3">
                         <div class="col-6 px-3 gallery-vcard-position">
-                            <div class="card shadow-product w-100 border-0 h-100 shadow-gallery">              
+                            <div class="card shadow-product w-100 border-0 h-100 shadow-gallery">
                                 <div class="gallery-profile">
                                     <div>
                                         <a href="javascript:void(0)" data-bs-toggle="modal"
@@ -298,7 +309,7 @@
                             </div>
                         </div>
                         <div class="col-6 px-3 gallery-vcard-position">
-                            <div class="card shadow-product w-100 border-0 h-100 shadow-gallery">             
+                            <div class="card shadow-product w-100 border-0 h-100 shadow-gallery">
                                 <div class="gallery-profile">
                                     <img src="{{asset('assets/img/vcard1/v1.jpg')}}" alt="profile" class="w-100"/>
                                 </div>

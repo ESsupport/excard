@@ -19,6 +19,18 @@
     <link rel="stylesheet" href="{{ asset('assets/css/slider/css/slick-theme.min.css') }}">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{--    @if (App::environment('production'))--}}
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex"/>
+    {{--    @endif--}}
+    <meta name="description" content="TheArtList.com is the leading online resource for visual artists and photographers looking for income and exhibition opportunities. Our online database lists thousands or featured art contests, photography calls, and opportunity announcements.">
+    <meta name="keywords" content="">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex"/>
+    <meta property="og:image" content="https://www.theartlist.com/submission/small/1666801065.png"/>
 
 </head>
 <body>
@@ -26,10 +38,10 @@
 <div class="container main-section">
     <div class="row d-flex justify-content-center">
         <div class="main-bg p-0">
-            
+
             <div class="head-img position-relative">
                 <img src="{{asset('assets/img/vcard6/bgvcard.png')}}" height="400px" class="img-fluid"/>
-                
+
                 <div class="d-flex justify-content-end position-absolute top-0 end-0 me-3">
                     <div class="language pt-3 me-2">
                         <ul class="text-decoration-none">
@@ -89,7 +101,7 @@
                                         <h3 class="big-title text-light">Luccy Morries</h3>
                                         <p class="small-title text-light">a full stack developer</p>
                                     </div>
-                                    
+
                                     <div class="social-section">
                                         <div class="social-icon d-flex">
                                             <div class="pro-icon me-2">

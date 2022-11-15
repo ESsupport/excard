@@ -20,6 +20,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{--    @if (App::environment('production'))--}}
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex"/>
+    {{--    @endif--}}
+    <meta name="description" content="TheArtList.com is the leading online resource for visual artists and photographers looking for income and exhibition opportunities. Our online database lists thousands or featured art contests, photography calls, and opportunity announcements.">
+    <meta name="keywords" content="">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex"/>
+    <meta property="og:image" content="https://www.theartlist.com/submission/small/1666801065.png"/>
 
     <title>Vcard3 Theme</title>
 </head>

@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Spatie\Permission\Models\Role;
 use Stripe\Stripe;
-use Gerardojbaez\Money\Money; 
+use Gerardojbaez\Money\Money;
 
 /**
  *
@@ -463,11 +463,19 @@ function getProratedPlanData($planIDChosenByUser)
 {
     /** @var Plan $subscriptionPlan */
     $subscriptionPlan = Plan::findOrFail($planIDChosenByUser);
-    $newPlanDays = $subscriptionPlan->frequency == Plan::MONTHLY ? 30 : 365;
-
+    if ($subscriptionPlan->frequency == Plan::MONTHLY) {
+        $newPlanDays = 30;
+        $frequency = 'Monthly';
+    } else {
+        if ($subscriptionPlan->frequency == Plan::YEARLY) {
+            $newPlanDays = 365;
+            $frequency = 'Yearly';
+        } else {
+            $newPlanDays = 36500;
+            $frequency = 'Unlimited';
+        }
+    }
     $currentSubscription = getCurrentSubscription();
-    $frequency = $subscriptionPlan->frequency == Plan::MONTHLY ? 'Monthly' : 'Yearly';
-
     $startsAt = Carbon::now();
 
     $carbonParseStartAt = Carbon::parse($currentSubscription->starts_at);
@@ -508,7 +516,8 @@ function getProratedPlanData($planIDChosenByUser)
             $amountToPay = $isJPYCurrency
                 ? round($subscriptionPlan->price - $remainingBalance)
                 : round($subscriptionPlan->price - $remainingBalance, 2);
-        } else {
+        }
+        if($remainingBalance > $subscriptionPlan->price && $subscriptionPlan->frequency != Plan::UNLIMITED) {
             $perDayPriceOfNewPlan = round($subscriptionPlan->price / $newPlanDays, 2);
             $totalExtraDays = round($remainingBalance / $perDayPriceOfNewPlan);
 
@@ -564,7 +573,7 @@ function isSubscriptionExpired(): array
         $subscription = Subscription::with(['plan'])
             ->whereTenantId(getLogInTenantId())
             ->where('status', Subscription::ACTIVE)->latest()->first();
-        
+
 
     if ($subscription == null) {
         return [
@@ -583,7 +592,7 @@ function isSubscriptionExpired(): array
     $totalDays = Carbon::parse($subscription->starts_at)->diffInDays($subscriptionEndDate);
     $usedDays = Carbon::parse($subscription->starts_at)->diffInDays($startsAt);
     $diffInDays = $totalDays - $usedDays;
-    
+
 
     $expirationMessage = null;
     if ($diffInDays <= getSuperAdminSettingValue('plan_expire_notification') && $diffInDays > 0) {
@@ -1043,13 +1052,13 @@ function getStatusClassName($status)
 function getMaximumCurrencyCode()
 {
     $plan = Plan::all()->groupBy('currency_id');
-    
+
     if($plan->isEmpty()){
         return;
     }
-    
+
     return $plan->first()->first()->currency->currency_code;
-  
+
 }
 
 /**
@@ -1214,7 +1223,7 @@ function getCurrentVersion()
 
 function checkPaymentGateway($paymentGateway): bool
 {
-    
+
     if ($paymentGateway == Plan::STRIPE) {
         if (config('services.stripe.key') && config('services.stripe.secret_key')) {
             return true;
@@ -1235,6 +1244,6 @@ function checkPaymentGateway($paymentGateway): bool
         }
         return false;
     }
-    
+
     return true;
 }

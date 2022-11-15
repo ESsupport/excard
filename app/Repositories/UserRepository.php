@@ -92,10 +92,10 @@ class UserRepository extends BaseRepository
             $subscription = new Subscription();
             $subscription->plan_id = $plan->id;
             $subscription->starts_at = Carbon::now();
-            $subscription->ends_at = Carbon::now()->addDays($plan->trial_days);
+            $subscription->ends_at = $plan->frequency == Plan::UNLIMITED ? Carbon::now()->addYears(100) : Carbon::now()->addDays($plan->trial_days);
             $subscription->plan_amount = $plan->price;
             $subscription->plan_frequency = $plan->frequency;
-            $subscription->trial_ends_at = Carbon::now()->addDays($plan->trial_days);
+            $subscription->trial_ends_at = $plan->frequency == Plan::UNLIMITED ? Carbon::now()->addYears(100) : Carbon::now()->addDays($plan->trial_days);
             $subscription->no_of_vcards = $plan->no_of_vcards;
             $subscription->tenant_id = $input['tenant_id'];
             $subscription->status = Subscription::ACTIVE;
@@ -153,7 +153,7 @@ class UserRepository extends BaseRepository
                     'email' => $userInput['email'],
                     'token' => $token
                 ]);
-                
+
                 $verifyButton = url(config('app_domain').'/change-email-verification/'.$user->id.'/'.$token);
                 $data = [
                     'user_id'       => $user->id,

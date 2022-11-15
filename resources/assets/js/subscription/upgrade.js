@@ -158,7 +158,7 @@ listenClick('.paymentByRazorPay', function () {
 });
 
 listenClick('.manuallyPay', function (){
-    $('.paymentByRazorPay').text('Please Wait...');
+    $('.manuallyPay').text('Please Wait...');
     $(this).addClass('disabled');
     let planId = $(this).attr('data-id')
     let payloadData = {
@@ -185,7 +185,7 @@ listenClick('.manuallyPay', function (){
         complete: function () {
         },
     });
-    
+
 })
 
 listenClick( '.plan-zero', function () {

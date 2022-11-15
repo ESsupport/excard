@@ -72,10 +72,12 @@ class Plan extends Model
 
     const MONTHLY = 1;
     const YEARLY = 2;
+    const UNLIMITED = 3;
 
     const DURATION = [
         self::MONTHLY => 'Month',
         self::YEARLY  => 'Year',
+        self::UNLIMITED => 'Unlimited',
     ];
 
     const STRIPE = 1;

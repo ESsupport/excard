@@ -82,7 +82,15 @@ class SubscriptionRepository extends BaseRepository
     {
         /** @var Plan $subscriptionPlan */
         $subscriptionPlan = Plan::findOrFail($planId);
-        $newPlanDays = $subscriptionPlan->frequency == Plan::MONTHLY ? 30 : 365;
+        if ($subscriptionPlan->frequency == Plan::MONTHLY) {
+            $newPlanDays = 30;
+        } else {
+            if ($subscriptionPlan->frequency == Plan::YEARLY) {
+                $newPlanDays = 365;
+            } else {
+                $newPlanDays = 36500;
+            }
+        }
         $startsAt = Carbon::now();
         $endsAt = $startsAt->copy()->addDays($newPlanDays);
 
@@ -118,13 +126,13 @@ class SubscriptionRepository extends BaseRepository
 //            $frequencyDays = $planFrequency == Plan::MONTHLY ? 30 : 365;
             $perDayPrice = round($planPrice / $currentSubsTotalDays, 2);
             $isJPYCurrency = !empty($subscriptionPlan->currency) && isJPYCurrency($subscriptionPlan->currency->currency_code);
-            
+
             $remainingBalance = $planPrice - ($perDayPrice * $usedDays);
-            $remainingBalance = $isJPYCurrency 
+            $remainingBalance = $isJPYCurrency
                 ? round($remainingBalance) : $remainingBalance;
 
             if ($remainingBalance < $subscriptionPlan->price) { // adjust the amount in plan i.e. you have to pay for it
-                $amountToPay = $isJPYCurrency 
+                $amountToPay = $isJPYCurrency
                     ? round($subscriptionPlan->price - $remainingBalance)
                     : round($subscriptionPlan->price - $remainingBalance, 2);
             } else {
@@ -161,7 +169,7 @@ class SubscriptionRepository extends BaseRepository
 
         $subscription = Subscription::create($input);
 
-        
+
         if ($subscriptionPlan->price <= 0 || $amountToPay == 0) {
             // De-Active all other subscription
             Subscription::whereTenantId(getLogInTenantId())

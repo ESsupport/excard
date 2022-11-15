@@ -14,7 +14,7 @@
     {{--slick slider--}}
     <link rel="stylesheet" href="{{ asset('assets/css/slider/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/slider/css/slick-theme.min.css') }}">
-    
+
     {{--google Font--}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,11 +23,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
     <title>Vcard</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{--    @if (App::environment('production'))--}}
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex"/>
+    {{--    @endif--}}
+    <meta name="description" content="TheArtList.com is the leading online resource for visual artists and photographers looking for income and exhibition opportunities. Our online database lists thousands or featured art contests, photography calls, and opportunity announcements.">
+    <meta name="keywords" content="">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex"/>
+    <meta property="og:image" content="https://www.theartlist.com/submission/small/1666801065.png"/>
 </head>
 <body>
 <div class="container">
     <div class="vcard-eight main-content w-100 mx-auto overflow-hidden">
-        
+
         {{--banner--}}
         <div class="vcard-eight__banner w-100 position-relative">
             <img src="{{asset('assets/img/vcard8/vcard8-banner.png')}}" class="img-fluid banner-image position-relative"

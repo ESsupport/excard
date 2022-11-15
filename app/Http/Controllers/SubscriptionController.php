@@ -99,9 +99,10 @@ class SubscriptionController extends AppBaseController
 
         $monthlyPlans = $plans->where('frequency', Plan::MONTHLY);
         $yearlyPlans = $plans->where('frequency', Plan::YEARLY);
+        $unLimitedPlans = $plans->where('frequency', Plan::UNLIMITED);
 
         return view('subscription.upgrade',
-            compact('monthlyPlans', 'yearlyPlans'));
+            compact('monthlyPlans', 'yearlyPlans','unLimitedPlans'));
     }
 
     /**
@@ -125,9 +126,9 @@ class SubscriptionController extends AppBaseController
             ]);
 
             DB::commit();
-            
+
             return $this->sendSuccess(__('messages.placeholder.subscribed_plan'));
-        } catch (\Exception $e) {   
+        } catch (\Exception $e) {
             DB::rollBack();
 
             throw new UnprocessableEntityHttpException($e->getMessage());
@@ -142,20 +143,20 @@ class SubscriptionController extends AppBaseController
      */
     public function manualPay(Request $request): JsonResponse
     {
-        
+
         $this->subscriptionRepo->manageSubscription($request->get('planId'));
         $data = Subscription::whereTenantId(getLogInTenantId())->orderBy('created_at', 'desc')->first();
         Subscription::whereId($data->id)->update(['payment_type' => 'Cash']);
         $is_on = Setting::where('key', 'is_manual_payment_guide_on')->first();
         $manual_payment_guide_step = Setting::where('key', 'manual_payment_guide')->first();
-        
+
         if ($is_on['value'] == 'on')
         {
             $user = \Illuminate\Support\Facades\Auth::user();
             Mail::to($user['email'])
                 ->send(new ManualPaymentGuideMail($manual_payment_guide_step['value'],$user));
         }
-        
+
         return $this->sendSuccess(__('messages.placeholder.subscribed_plan_wait'));
     }
 
@@ -166,7 +167,7 @@ class SubscriptionController extends AppBaseController
     {
 
         return view('sadmin.planPyment.index');
-        
+
     }
 
     /**
@@ -180,12 +181,12 @@ class SubscriptionController extends AppBaseController
         Subscription::whereTenantId($request->tenant_id)
             ->where('id', '!=', $request->id)
             ->update(['status' => 0]);
-      
+
         Subscription::where('id', $request->id)->update(['status' => 1,
                                'payment_type' => 'paid']);
 
         return $this->sendSuccess(__('messages.placeholder.payment_received'));
-       
+
     }
 
     public function purchaseSubscription(Request $request)
