@@ -1,4 +1,5 @@
 <?php return array (
+    'coupon'                    => 'كوبونات خصم',
     'select_payment_type' => 'حدد بوابة الدفع',
     'make_appointment' => 'حدد موعدا',
     'enquiry' => 'استفسارات',
@@ -184,8 +185,23 @@
     'language' => 'لغة',
     'edit_translation' => 'تحرير الترجمة',
   ),
+    'coupons' =>
+        array(
+            'code'       => 'شفرة',
+            'percentage' => 'نسبة مئوية',
+            'use_count'  => 'استخدم Count',
+            'coupon_name' => 'أدخل اسم القسيمة',
+            'coupon_code' => 'أدخل رمز القسيمة',
+            'coupon_percentage' => 'أدخل النسبة المئوية',
+            'coupon_use_count' => 'أدخل إجمالي عدد الاستخدام',
+            'coupon_create'     => 'تم إنشاء الكوبون بنجاح.',
+            'coupon_update'     => 'تم تحديث القسيمة بنجاح.',
+            'coupon_status'     => 'تم تحديث حالة القسيمة بنجاح.'
+        ),
     'common' => 
   array (
+      'new_coupon'              => 'قسيمة جديدة',
+      'edit_coupon'              => 'تحرير القسيمة',
       'this_weeks' => 'هذا الاسبوع',
       'custom'     => 'العادة',
       'from'       => 'من',

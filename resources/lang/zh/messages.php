@@ -1,4 +1,5 @@
 <?php return array (
+    'coupon'                    => '優惠券',
     'select_payment_type' => '選擇支付網關',
     'make_appointment' => '約個時間',
     'enquiry' => '查詢',
@@ -183,8 +184,23 @@
     'language' => '语言',
     'edit_translation' => '编辑翻译',
   ),
+    'coupons' =>
+        array(
+            'code'       => '代碼',
+            'percentage' => '百分比',
+            'use_count'  => '使用次數',
+            'coupon_name' => '輸入優惠券名稱',
+            'coupon_code' => '輸入優惠券代碼',
+            'coupon_percentage' => '輸入百分比',
+            'coupon_use_count' => '輸入總使用次數',
+            'coupon_create'     => '優惠券創建成功。',
+            'coupon_update'     => '優惠券更新成功。',
+            'coupon_status'     => '優惠券狀態更新成功。'
+        ),
     'common' => 
   array (
+      'new_coupon'              => '新優惠券',
+      'edit_coupon'              => '編輯優惠券',
       'custom'                  => '风俗',
       'from'                    => '从',
       'to'                      => '至',

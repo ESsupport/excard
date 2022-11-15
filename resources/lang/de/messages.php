@@ -1,4 +1,5 @@
 <?php return array (
+    'coupon'                    => 'Rabatt Coupons',
     'select_payment_type' => 'Wählen Sie Zahlungsgateway aus',
     'make_appointment' => 'Einen Termin machen',
     'enquiry' => 'Anfragen',
@@ -184,8 +185,25 @@
     'language' => 'Sprache',
     'edit_translation' => 'Editar traducción',
   ),
+
+    'coupons' =>
+        array(
+            'code'       => 'Code',
+            'percentage' => 'Prozentsatz',
+            'use_count'  => 'Verwenden Sie Zählung',
+            'coupon_name' => 'Geben Sie den Gutscheinnamen ein',
+            'coupon_code' => 'Gutschein-Code eingeben',
+            'coupon_percentage' => 'Prozent eingeben',
+            'coupon_use_count' => 'Geben Sie die Gesamtnutzungsanzahl ein',
+            'coupon_create'     => 'Gutschein erfolgreich erstellt.',
+            'coupon_update'     => 'Gutschein erfolgreich aktualisiert.',
+            'coupon_status'     => 'Gutscheinstatus erfolgreich aktualisiert.'
+        ),
+    
     'common' =>
   array (
+      'new_coupon'              => 'Neuer Gutschein',
+      'edit_coupon'              => 'Gutschein bearbeiten',
       'custom'                  => 'Brauch',
       'from'                    => 'Aus',
       'to'                      => 'Zu',

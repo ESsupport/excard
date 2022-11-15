@@ -51,17 +51,22 @@ class SubscriptionRepository extends BaseRepository
      *
      * @return array
      */
-    public function purchaseSubscriptionForStripe($planId)
+    public function purchaseSubscriptionForStripe($planId, $coupon_applied, $discount_pay, $coupon_id)
     {
         $data = $this->manageSubscription($planId);
 
         if (!isset($data['plan'])) { // 0 amount plan or try to switch the plan if it is in trial mode
             return $data;
         }
-
+       
+        if($coupon_applied == 'true'){
+            $data['amountToPay'] = $discount_pay;
+            session(['used_coupon_id' => $coupon_id]);
+        }
+      
         $result = $this->manageStripeData(
             $data['plan'],
-            ['amountToPay' => $data['amountToPay'],
+            ['amountToPay' => $data['amountToPay'], 
                 'sub_id' => $data['subscription']->id]
         );
 

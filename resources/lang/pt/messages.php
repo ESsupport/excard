@@ -1,4 +1,5 @@
 <?php return array (
+    'coupon'                    => 'Cupons de desconto',
     'select_payment_type' => 'Selecione o gateway de pagamento',
     'make_appointment' => 'Marcar consulta',
     'enquiry' => 'Inquéritos',
@@ -184,8 +185,24 @@
     'language' => 'Língua',
     'edit_translation' => 'Editar tradução',
   ),
+
+    'coupons' =>
+        array(
+            'code'       => 'Código',
+            'percentage' => 'Percentagem',
+            'use_count'  => 'Contagem de uso',
+            'coupon_name' => 'Digite o nome do cupom',
+            'coupon_code' => 'Digite o código do cupom',
+            'coupon_percentage' => 'Insira a porcentagem',
+            'coupon_use_count' => 'Insira a contagem total de uso',
+            'coupon_create'     => 'Cupom criado com sucesso.',
+            'coupon_update'     => 'Cupom atualizado com sucesso.',
+            'coupon_status'     => 'Status do cupom atualizado com sucesso.'
+        ),
     'common' => 
   array (
+      'new_coupon'              => 'Novo cupom',
+      'edit_coupon'              => 'Editar cupom',
       'custom'                  => 'Personalizado',
       'from'                    => 'A partir de',
       'to'                      => 'Para',

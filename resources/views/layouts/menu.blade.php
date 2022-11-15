@@ -54,6 +54,13 @@
     </a>
 </li>
 
+<li class="nav-item {{ Request::is('sadmin/coupon*') ? 'active' : '' }}">
+    <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('coupon.index') }}">
+        <span class="aside-menu-icon pe-3"><i class="fa fa-gift"></i></span>
+        <span class="aside-menu-title">{{ __('messages.coupon') }}</span>
+    </a>
+</li>
+
 <li class="nav-item {{ Request::is('sadmin/currencies*') ? 'active' : '' }}">
     <a class="nav-link d-flex align-items-center py-3" aria-current="page" href="{{ route('currencies.index') }}">
         <span class="aside-menu-icon pe-3"><i class="fas fa-dollar-sign"></i></span>

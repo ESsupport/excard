@@ -7,6 +7,7 @@
     'users'                     => 'Users',
     'vcards'                    => 'VCards',
     'plans'                     => 'Plans',
+    'coupon'                    => 'Discount Coupons',
     'settings'                  => 'Settings',
     'roles'                     => 'Roles',
     'reset_password'            => 'Reset Password',
@@ -184,8 +185,23 @@
             'language'         => 'Language',
             'edit_translation' => 'Edit Translation',
         ),
+    'coupons' =>
+        array(
+            'code'       => 'Code',
+            'percentage' => 'Percentage',
+            'use_count'  => 'Use Count',
+            'coupon_name' => 'Enter Coupon Name',
+            'coupon_code' => 'Enter Coupon Code',
+            'coupon_percentage' => 'Enter Percentage',
+            'coupon_use_count' => 'Enter Total Use Count',
+            'coupon_create'     => 'Coupon Created Successfully.',
+            'coupon_update'     => 'Coupon Updated Successfully.',
+            'coupon_status'     => 'Coupon Status Updated Successfully.'
+        ),
     'common'                    =>
         array(
+            'new_coupon'              => 'New Coupon',
+            'edit_coupon'              => 'Edit Coupon',
             'custom'                  => 'Custom',
             'from'                    => 'From',
             'to'                      => 'To',

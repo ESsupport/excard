@@ -1,4 +1,5 @@
 <?php return array (
+    'coupon'                    => 'Купоны на скидку',
     'select_payment_type' => 'Выберите платежный шлюз',
     'make_appointment' => 'Назначить встречу',
     'enquiry' => 'Запросы',
@@ -184,8 +185,25 @@
     'language' => 'язык',
     'edit_translation' => 'Изменить перевод',
   ),
+
+    'coupons' =>
+        array(
+            'code'       => 'Код',
+            'percentage' => 'Процент',
+            'use_count'  => 'Использовать количество',
+            'coupon_name' => 'Введите название купона',
+            'coupon_code' => 'Введите код купона',
+            'coupon_percentage' => 'Введите процент',
+            'coupon_use_count' => 'Введите общее количество использований',
+            'coupon_create'     => 'Купон успешно создан.',
+            'coupon_update'     => 'Купон успешно обновлен.',
+            'coupon_status'     => 'Статус купона успешно обновлен.'
+        ),
+    
     'common' => 
   array (
+      'new_coupon'              => 'Новый купон',
+      'edit_coupon'              => 'Изменить купон',
       'custom'                  => 'Обычай',
       'from'                    => 'Из',
       'to'                      => 'К',
