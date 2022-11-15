@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use App\Models\AppointmentTransaction;
+use App\Models\Coupon;
 use App\Models\Currency;
 use App\Models\Plan;
 use App\Models\Subscription;
@@ -100,7 +101,7 @@ class StripeController extends AppBaseController
 
             DB::commit();
 
-            
+
             Flash::success(__('messages.placeholder.purchased_plan'));
 
             return view('sadmin.plans.payment.paymentSuccess');
@@ -149,6 +150,14 @@ class StripeController extends AppBaseController
                 'status'         => Transaction::SUCCESS,
                 'meta'           => json_encode($sessionData),
             ]);
+
+            if (\Illuminate\Support\Facades\Session::has('used_coupon_id')){
+                $coupon = Coupon::where('id', session('used_coupon_id'))->first();
+                $coupon->update([
+                    'total_used' => $coupon->total_used + 1
+                ]);
+                session()->forget('used_coupon_id');
+            }
 
             $appointmentInput = session()->get('appointment_details');
             session()->forget('appointment_details');

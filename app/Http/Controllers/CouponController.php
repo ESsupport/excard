@@ -44,7 +44,7 @@ class CouponController extends AppBaseController
     public function create()
     {
         $code = Str::random(10);
-        
+
         return view('sadmin.coupons.create', compact('code'));
     }
 
@@ -86,11 +86,11 @@ class CouponController extends AppBaseController
     {
         return view('sadmin.coupons.edit', compact('coupon'));
     }
-    
+
     public function update(UpdateCouponRequest $request, Coupon $coupon)
     {
         $input = $request->all();
-        
+
         $this->couponRepository->update($input, $coupon->id);
 
         Flash::success(__('messages.coupons.coupon_update'));
@@ -109,7 +109,7 @@ class CouponController extends AppBaseController
         $coupon->delete();
         return $this->sendSuccess('Coupon deleted successfully.');
     }
-    
+
     public function updateStatus(Coupon $coupon){
         $coupon->update([
             'status' => !$coupon->status,
@@ -117,13 +117,14 @@ class CouponController extends AppBaseController
 
         return $this->sendSuccess(__('messages.coupons.coupon_status'));
     }
-    
+
     public function couponCheck(Request $request){
         $input = $request->all();
         $coupon = Coupon::where('code', $input['code'])->where('status', 1)->first();
 
         if (!empty($coupon)) {
             $total_used = $coupon->value('total_used');
+            $total_used = ($total_used == null) ? 0 : $total_used;
             $available = $coupon->where('code', $input['code'])->where('status', 1)->where('use_type', '>',
                 $total_used)->first();
             if (!empty($available)) {
@@ -141,9 +142,9 @@ class CouponController extends AppBaseController
         }
 
         return $this->sendError(__('Invalid coupon Coupon code'));
-        
-           
-    
-        
+
+
+
+
     }
 }
