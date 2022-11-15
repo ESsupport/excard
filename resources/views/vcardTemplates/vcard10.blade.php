@@ -18,7 +18,7 @@
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex"/>
     {{--    @endif--}}
-    <meta name="description" content="TheArtList.com is the leading online resource for visual artists and photographers looking for income and exhibition opportunities. Our online database lists thousands or featured art contests, photography calls, and opportunity announcements.">
+    <meta name="description" content="{{ $vcard->description }}">
     <meta name="keywords" content="">
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex"/>
