@@ -218,8 +218,8 @@ Route::get('/upgrade-to-v6-2-0', function () {
 Route::get('/upgrade-to-v6-3-0', function () {
     Artisan::call('migrate',
     [
-       '--path' => 'database/migrations/2022_08_08_093543_vcard_made_by_column_add.php', 
-       '--force' => true, 
+       '--path' => 'database/migrations/2022_08_08_093543_vcard_made_by_column_add.php',
+       '--force' => true,
     ]);
     Artisan::call('db:seed', ['--class' => 'DefaultUserLanguageSettingsSeeder', '--force' => true]);
 });
@@ -236,3 +236,10 @@ Route::get('lang-js', function () {
 });
 
 
+Route::get('/coup-code-migration', function () {
+    Artisan::call('migrate',
+        [
+            '--path' => 'database/migrations/2022_11_10_065059_create_coupons_table.php',
+            '--force' => true,
+        ]);
+});

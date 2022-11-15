@@ -5,7 +5,7 @@
     </div>
     <div class="col-lg-6 mb-7">
         {{ Form::label('code', __('messages.coupons.code').':',['class' => 'form-label required']) }}
-        {{ Form::text('code', isset($coupon) ? $coupon->code : $code  , ['class' => 'form-control', 'placeholder' => __('messages.coupons.coupon_code'), 'required','readonly']) }}
+        {{ Form::text('code', isset($coupon) ? $coupon->code : $code  , ['class' => 'form-control', 'placeholder' => __('messages.coupons.coupon_code'), 'required']) }}
     </div>
     <div class="col-lg-6 mb-7">
         {{ Form::label('percentage', __('messages.coupons.percentage').':',['class' => 'form-label required']) }}
