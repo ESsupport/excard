@@ -608,11 +608,11 @@
 <script type="text/javascript" src="{{ asset('assets/js/front-third-party.js') }}"></script>
 <script type="text/javascript" src="{{ asset('front/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/js/slider/js/slick.min.js') }}" type="text/javascript"></script>
-<script>
-   @if(checkFeature('seo') && $vcard->google_analytics)
-       {!! $vcard->google_analytics !!}
-   @endif
+@if(checkFeature('seo') && $vcard->google_analytics)
+   {!! $vcard->google_analytics !!}
+@endif
 
+<script>
    @if(isset(checkFeature('advanced')->custom_js) && $vcard->custom_js)
        {!! $vcard->custom_js !!}
    @endif

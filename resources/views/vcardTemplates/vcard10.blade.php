@@ -624,6 +624,7 @@
 @if(checkFeature('seo') && $vcard->google_analytics)
 {!! $vcard->google_analytics !!}
 @endif
+
 <script>
 @if(isset(checkFeature('advanced')->custom_js) && $vcard->custom_js)
 {!! $vcard->custom_js !!}
