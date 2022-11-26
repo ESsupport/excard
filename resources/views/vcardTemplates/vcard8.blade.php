@@ -18,11 +18,11 @@
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex"/>
     {{--    @endif--}}
-    <meta name="description" content="{{ $vcard->description }}">
+    <meta name="description" content="{{$vcard->description}}">
     <meta name="keywords" content="">
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex"/>
-    <meta property="og:image" content="https://www.theartlist.com/submission/small/1666801065.png"/>
+    <meta property="og:image" content="{{$vcard->cover_url}}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @if(checkFeature('seo') && $vcard->site_title && $vcard->home_title)
         <title>{{ $vcard->home_title }} | {{ $vcard->site_title }}</title>

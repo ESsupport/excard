@@ -26,11 +26,11 @@
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex"/>
     {{--    @endif--}}
-    <meta name="description" content="{{ $vcard->description }}">
+    <meta name="description" content="{{$vcard->description}}">
     <meta name="keywords" content="">
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex"/>
-    <meta property="og:image" content="https://www.theartlist.com/submission/small/1666801065.png"/>
+    <meta property="og:image" content="{{$vcard->cover_url}}"/>
 
 
     <!-- Favicon -->
