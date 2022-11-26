@@ -134,8 +134,6 @@
                                     {{ $subscriptionsPricingPlan->currency->currency_icon }}
                                                     {{($newPlan['amountToPay'])}}
                                     </span>
-                                                <input type="hidden" id="coupon_applied" name="coupon_applied" value="false">
-                                                <input type="hidden" id="coupon_id" name="coupon_id">
                                             </div>
                                     </div>
                                 </div>
@@ -195,4 +193,7 @@
             </div>
         </div>
     </div>
+    <input type="hidden" id="coupon_applied" name="coupon_applied" value="">
+    <input type="hidden" id="coupon_id" name="coupon_id" value="">
+    <input type="hidden" id="plan_amount" name="coupon_id" value="{{$subscriptionsPricingPlan->price}}">
 @endsection

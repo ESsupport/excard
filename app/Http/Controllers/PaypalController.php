@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use App\Models\AppointmentTransaction;
-use App\Models\Coupon;
 use App\Models\Currency;
 use App\Models\Plan;
 use App\Models\Subscription;
@@ -20,7 +19,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Session;
 use Laracasts\Flash\Flash;
 use PayPalCheckoutSdk\Core\PayPalHttpClient;
 use PayPalCheckoutSdk\Core\ProductionEnvironment;
@@ -56,9 +54,7 @@ class PaypalController extends AppBaseController
     public function onBoard(Request $request)
     {
         $plan = Plan::with('currency')->findOrFail($request->planId);
-        $coupon_applied = $request->coupon_applied;
-        $discount_pay = $request->amount_to_pay;
-        $coupon_id     = $request->coupon_id;
+
         if ($plan->currency->currency_code != null && !in_array(strtoupper($plan->currency->currency_code),
                 getPayPalSupportedCurrencies())) {
             return $this->sendError(__('messages.placeholder.this_currency_is_not_supported'));
@@ -89,11 +85,6 @@ class PaypalController extends AppBaseController
             $environment = new ProductionEnvironment($clientId, $clientSecret);
         } else {
             $environment = new SandboxEnvironment($clientId, $clientSecret);
-        }
-        
-        if($coupon_applied == 'true'){
-            $data['amountToPay'] = $discount_pay;
-            session(['used_coupon_id' => $coupon_id]);
         }
 
         $client = new PayPalHttpClient($environment);
@@ -236,14 +227,6 @@ class PaypalController extends AppBaseController
 
             session()->forget(['vcard_user_id', 'tenant_id', 'vcard_id']);
 
-            if (Session::has('used_coupon_id')){
-                $coupon = Coupon::where('id', session('used_coupon_id'))->first();
-                $coupon->update([
-                    'total_used' => $coupon->total_used + 1
-                ]);
-                session()->forget('used_coupon_id');
-            }
-
             Flash::success(__('messages.placeholder.payment_done'));
 
             return redirect(route('vcard.show',[$vcard->url_alias, __('messages.placeholder.appointment_created')]));
@@ -264,9 +247,6 @@ class PaypalController extends AppBaseController
 
         session()->forget('appointment_details');
         session()->forget(['vcard_user_id', 'tenant_id', 'vcard_id']);
-        if (Session::has('used_coupon_id')){
-            session()->forget('used_coupon_id');
-        }
 
         Flash::error('Your Payment is Cancelled');
 

@@ -128,10 +128,11 @@ class CouponController extends AppBaseController
             $available = $coupon->where('code', $input['code'])->where('status', 1)->where('use_type', '>',
                 $total_used)->first();
             if (!empty($available)) {
-                $amount = $input['pay_amount'];
+                $amount = $input['plan_amount'];
+                $payAmount = $input['pay_amount'];
                 $discount_per = $coupon->percentage;
 
-                $final_amount = $amount - ($amount * ($discount_per / 100));
+                $final_amount = $payAmount - (($amount * $discount_per )/ 100);
                 $data = [
                     'final_amount' => $final_amount,
                     'coupon_id'    => $coupon->id,

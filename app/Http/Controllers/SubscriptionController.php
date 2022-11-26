@@ -225,7 +225,7 @@ class SubscriptionController extends AppBaseController
             $coupon->update([
                 'total_used' => $coupon->total_used + 1
             ]);
-            session()->forget('used_coupon_id'); 
+            session()->forget('used_coupon_id');
         }
         Flash::success($subscription->plan->name.' '.__('messages.subscription.has_been_subscribed'));
 

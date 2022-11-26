@@ -26,7 +26,7 @@
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex"/>
     {{--    @endif--}}
-    <meta name="description" content="I am a heart surgeon. I have 10 year experience in surgery,I am a heart surgeon. I have 10 year experience in surgery,I am a heart surgeon.">
+    <meta name="description" content="TheArtList.com is the leading online resource for visual artists and photographers looking for income and exhibition opportunities. Our online database lists thousands or featured art contests, photography calls, and opportunity announcements.">
     <meta name="keywords" content="">
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex"/>

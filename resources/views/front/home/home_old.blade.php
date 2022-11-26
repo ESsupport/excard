@@ -186,7 +186,7 @@
                                             {{ __('messages.subscription.currently_active') }}</button>
                                     @else
                                         <button type="button"
-                                                class="btn btn-info rounded-pill mx-auto d-block cursor-remove-plan class-1" data-turbo="false">
+                                                class="btn btn-info rounded-pill mx-auto d-block cursor-remove-plan" data-turbo="false">
                                             {{ __('messages.subscription.renew_free_plan') }}
                                         </button>
                                     @endif
@@ -201,40 +201,40 @@
                                                 {{ __('messages.subscription.switch_plan') }}</a>
                                         @else
                                             <button type="button"
-                                                    class="btn btn-info rounded-pill mx-auto d-block cursor-remove-plan  class-2" data-turbo="false">
+                                                    class="btn btn-info rounded-pill mx-auto d-block cursor-remove-plan" data-turbo="false">
                                                 {{ __('messages.subscription.renew_free_plan') }}
                                             </button>
                                         @endif
                                     @else
-{{--                                        @if($plan->hasZeroPlan->count() == 0)--}}
+                                        @if($plan->hasZeroPlan->count() == 0)
                                             <a href="{{ $plan->price != 0 ? route('choose.payment.type', $plan->id) : 'javascript:void(0)' }}"
                                                class="btn btn-primary rounded-pill mx-auto  {{ $plan->price == 0 ? 'freePayment' : ''}}"
                                                data-id="{{ $plan->id }}"
                                                data-plan-price="{{ $plan->price }}"
                                                data-turbo="false">
                                                 {{ __('messages.subscription.choose_plan') }}</a>
-{{--                                        @else--}}
-{{--                                            <button type="button" class="btn btn-info rounded-pill mx-auto d-block cursor-remove-plan class-3" data-turbo="false">--}}
-{{--                                                {{ __('messages.subscription.renew_free_plan') }}--}}
-{{--                                            </button>--}}
-{{--                                        @endif--}}
+                                        @else
+                                            <button type="button" class="btn btn-info rounded-pill mx-auto d-block cursor-remove-plan" data-turbo="false">
+                                                {{ __('messages.subscription.renew_free_plan') }}
+                                            </button>
+                                        @endif
                                     @endif
                                 @endif
                             </div>
                         @else
                             <div class="mx-auto">
-{{--                                @if($plan->hasZeroPlan->count() == 0)--}}
+                                @if($plan->hasZeroPlan->count() == 0)
                                     <a href="{{ $plan->price != 0 ? route('choose.payment.type', $plan->id) : 'javascript:void(0)' }}"
                                        class="btn btn-primary rounded-pill mx-auto  {{ $plan->price == 0 ? 'freePayment' : ''}}"
                                        data-id="{{ $plan->id }}"
                                        data-plan-price="{{ $plan->price }}"
                                        data-turbo="false">
                                         {{ __('messages.subscription.choose_plan') }}</a>
-{{--                                @else--}}
-{{--                                    <button type="button" class="btn btn-info rounded-pill mx-auto d-block cursor-remove-plan class-4" data-turbo="false">--}}
-{{--                                        {{ __('messages.subscription.renew_free_plan') }}--}}
-{{--                                    </button>--}}
-{{--                                @endif--}}
+                                @else
+                                    <button type="button" class="btn btn-info rounded-pill mx-auto d-block cursor-remove-plan" data-turbo="false">
+                                        {{ __('messages.subscription.renew_free_plan') }}
+                                    </button>
+                                @endif
                             </div>
                         @endif
                                 @endif

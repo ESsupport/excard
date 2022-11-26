@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Coupon;
 use App\Models\Subscription;
 use App\Models\Transaction;
 use App\Repositories\SubscriptionRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Session;
 use Razorpay\Api\Api;
 
 class RazorpayController extends AppBaseController
@@ -35,14 +33,9 @@ class RazorpayController extends AppBaseController
      */
     public function onBoard(Request $request)
     {
-        $coupon_applied = $request->coupon_applied;
-        $discount_pay = $request->amount_to_pay;
-        $coupon_id     = $request->coupon_id;
+
         $data = $this->subscriptionRepository->manageSubscription($request->get('planId'));
-        if($coupon_applied == 'true'){
-            $data['amountToPay'] = $discount_pay.'.0';
-            session(['used_coupon_id' => $coupon_id]);
-        }
+
         $subscription = $data['subscription'];
         $api = new Api(config('payments.razorpay.key'), config('payments.razorpay.secret'));
         $orderData = [
@@ -113,14 +106,6 @@ class RazorpayController extends AppBaseController
                     'status'           => Subscription::ACTIVE,
                     'meta'           => json_encode($payment->toArray()),
                 ]);
-                
-                if (Session::has('used_coupon_id')){
-                    $coupon = Coupon::where('id', session('used_coupon_id'))->first();
-                    $coupon->update([
-                        'total_used' => $coupon->total_used + 1
-                    ]);
-                    session()->forget('used_coupon_id');
-                }
 
 
                 $subscription = Subscription::findOrFail($subscriptionID);
@@ -143,9 +128,6 @@ class RazorpayController extends AppBaseController
      */
     public function paymentFailed()
     {
-        if (Session::has('used_coupon_id')){
-            session()->forget('used_coupon_id');
-        }
         return view('sadmin.plans.payment.paymentcancel');
     }
 }

@@ -169,6 +169,7 @@
             </div>
             <div class="col-lg-12 border-top pt-4 mb-3">
                 {{ Form::label('Google Analytics', __('messages.vcard.google_analytics').':', ['class' => 'form-label']) }}
+                <small class="text-muted" >{{ __('messages.vcard.add_google_analytics') }}</small>
                 {{ Form::textarea('google_analytics',isset($metas) ? $metas['google_analytics'] : null, ['class' => 'form-control', 'placeholder' => __('messages.form.google_analytics')]) }}
             </div>
             <div class="card-header px-0">

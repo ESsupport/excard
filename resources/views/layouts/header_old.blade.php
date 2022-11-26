@@ -27,7 +27,7 @@
         @endif
 
         @role(\App\Models\Role::ROLE_ADMIN)
-            @if(!empty(getCurrentSubscription()) && getCurrentSubscription()->plan->is_trial)
+        @if(getCurrentSubscription()->plan->is_trial)
             <li class="px-xxl-3 px-2">
                 <span class="text-primary">
                     {{ __('messages.subscription.trial_plan') }}
