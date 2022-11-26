@@ -239,10 +239,11 @@ listenClick('.freePayment', function () {
 listenClick('#discount_coupon_check', function (){
     let code = $('#discount_code').val();
     let pay_amount = $('#payable_amount').val();
+    let plan_amount = $('#plan_amount').val();
     $.ajax({
         url: route('coupon.couponCheck'),
         method: 'post',
-        data: { code : code, pay_amount: pay_amount},
+        data: { code : code, pay_amount: pay_amount,plan_amount : plan_amount},
         cache: false,
         success: function (result) {
             if (result.success) {

@@ -136,7 +136,15 @@ class CouponController extends AppBaseController
                 $payAmount = $input['pay_amount'];
                 $discount_per = $coupon->percentage;
 
-                $final_amount = $payAmount - (($amount * $discount_per )/ 100);
+                if ($payAmount == 0){
+                    return $this->sendError('Coupon code will not apply because pay amount is zero');
+                }
+                
+                if ($payAmount == 0){
+                    $final_amount = 0;
+                }else{
+                    $final_amount = $payAmount - (($amount * $discount_per )/ 100);
+                }
                 $data = [
                     'final_amount' => $final_amount,
                     'coupon_id'    => $coupon->id,
