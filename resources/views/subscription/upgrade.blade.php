@@ -172,7 +172,7 @@
                                                             </button>
                                                         @endif
                                                     @else
-                                                      v  @if(!empty(getCurrentSubscription()) && !getCurrentSubscription()->isExpired() && ($plan->price == 0 || $plan->price != 0))
+                                                        @if(!empty(getCurrentSubscription()) && !getCurrentSubscription()->isExpired() && ($plan->price == 0 || $plan->price != 0))
                                                             @if($plan->hasZeroPlan->count() == 0)
                                                                 <a data-turbo="false"
                                                                    href="{{ $plan->price != 0 ? route('choose.payment.type', $plan->id) : 'javascript:void(0)' }}"
