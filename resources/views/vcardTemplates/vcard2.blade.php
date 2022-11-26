@@ -3,14 +3,6 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    @if(checkFeature('seo'))
-        @if($vcard->meta_description)
-            <meta name="description" content="{{$vcard->meta_description}}">
-        @endif
-        @if($vcard->meta_keyword)
-            <meta name="keywords" content="{{$vcard->meta_keyword}}">
-        @endif
-    @endif
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,20 +10,24 @@
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex"/>
     {{--    @endif--}}
-    <meta name="description" content="{{$vcard->description}}">
-    <meta name="keywords" content="">
+{{--    <meta name="description" content="{{$vcard->description}}">--}}
+    @if(checkFeature('seo'))
+        {{--        @if($vcard->meta_description)--}}
+        <meta name="description" content="{{$vcard->meta_description}}">
+        {{--        @endif--}}
+        @if($vcard->meta_keyword)
+            <meta name="keywords" content="{{$vcard->meta_keyword}}">
+        @endif
+    @endif
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex"/>
     <meta property="og:image" content="{{$vcard->cover_url}}"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    @if(checkFeature('seo') && $vcard->site_title && $vcard->home_title)
-        <title>{{ $vcard->home_title }} | {{ $vcard->site_title }}</title>
+    @if(checkFeature('seo') && $vcard->site_title)
+        {{--        <title>{{ $vcard->home_title }} | {{ $vcard->site_title }}</title>--}}
+        <title>{{ $vcard->site_title }}</title>
     @else
         <title>{{ $vcard->name }} | {{ getAppName() }}</title>
     @endif
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>{{ $vcard->name }} | {{ getAppName() }}</title>
     <!-- Favicon -->
     <link rel="icon" href="{{ getFaviconUrl() }}" type="image/png">
     <link href="{{ asset('front/css/bootstrap.min.css') }}" rel="stylesheet">
