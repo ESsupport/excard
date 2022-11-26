@@ -179,11 +179,17 @@
                                 
                                 @if(!empty(getCurrentSubscription()) && $plan->id == getCurrentSubscription()->plan_id && !getCurrentSubscription()->isExpired())
                                     @if($plan->price != 0)
-                                        <button type="button"
-                                                class="btn btn-success rounded-pill mx-auto d-block cursor-remove-plan pricing-plan-button-active"
-                                                data-id="{{ $plan->id }}"
-                                                data-turbo="false">
-                                            {{ __('messages.subscription.currently_active') }}</button>
+                                        <a data-turbo="false"
+                                           href="{{ $plan->price != 0 ? route('choose.payment.type', $plan->id) : 'javascript:void(0)' }}"
+                                           class="btn btn-success rounded-pill mx-auto {{ $plan->price == 0 ? 'freePayment' : ''}}"
+                                           data-id="{{ $plan->id }}"
+                                           data-plan-price="{{ $plan->price }}">
+                                            {{ __('messages.subscription.renew_plan') }}</a>
+{{--                                        <button type="button"--}}
+{{--                                                class="btn btn-success rounded-pill mx-auto d-block cursor-remove-plan pricing-plan-button-active"--}}
+{{--                                                data-id="{{ $plan->id }}"--}}
+{{--                                                data-turbo="false">--}}
+{{--                                            {{ __('messages.subscription.currently_active') }}</button>--}}
                                     @else
                                         <button type="button"
                                                 class="btn btn-info rounded-pill mx-auto d-block cursor-remove-plan class-1" data-turbo="false">
