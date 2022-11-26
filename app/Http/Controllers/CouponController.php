@@ -125,8 +125,12 @@ class CouponController extends AppBaseController
         if (!empty($coupon)) {
             $total_used = $coupon->value('total_used');
             $total_used = ($total_used == null) ? 0 : $total_used;
-            $available = $coupon->where('code', $input['code'])->where('status', 1)->where('use_type', '>',
-                $total_used)->first();
+            if ($coupon->use_type > 0){
+                $available = $coupon->where('code', $input['code'])->where('status', 1)->where('use_type', '>',
+                    $total_used)->first();
+            }else{
+                $available = $coupon->where('code', $input['code'])->where('status', 1)->first();
+            }
             if (!empty($available)) {
                 $amount = $input['plan_amount'];
                 $payAmount = $input['pay_amount'];

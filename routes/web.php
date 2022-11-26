@@ -279,7 +279,7 @@ Route::group(['middleware' => ['auth', 'valid.user', 'xss']], function () {
         });
 
         Route::get('/settings', [SettingController::class, 'index'])->name('setting.index');
-        Route::post('/settings', [SettingController::class, 'update'])->name('setting.update');
+        Route::post('/settings', [SettingController::class, 'update'])->name('setting.update')->withoutMiddleware('xss');
         Route::post('/setting-credential', [SettingController::class, 'settingTermsConditions'])->name('setting.TermsConditions.update')->withoutMiddleware([XSS::class]);
         Route::post('/setting-payment-guide', [SettingController::class, 'updateManualPaymentGuide'])->name('setting.ManualPaymentGuides.update')->withoutMiddleware([XSS::class]);
     });
